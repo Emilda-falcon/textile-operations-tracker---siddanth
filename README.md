@@ -1,6 +1,6 @@
-# Operations Tracker · Process House UI
+# Operations Tracker · Mobile-first UI
 
-Offline/local prototype for Siddhant Jain’s process house workflow. No database, external API, CDN, framework, or sign-in is required. The browser holds demo state in memory and nothing is sent anywhere.
+Offline/local mobile-first prototype for Siddhant Jain’s process house workflow. It prioritises phone use for floor, store, and supervisor tasks while remaining usable on desktop. No database, external API, CDN, framework, or sign-in is required.
 
 ## Included
 
@@ -26,7 +26,7 @@ Double-click `index.html`. The UI works without a server.
 1. Install Node.js LTS if needed.
 2. Open PowerShell in this folder.
 3. Run `npm start`.
-4. Open [http://127.0.0.1:5174](http://127.0.0.1:5174).
+4. Open [http://127.0.0.1:5175](http://127.0.0.1:5175).
 5. Stop with `Ctrl+C`.
 
 No internet connection is needed once the files are present.

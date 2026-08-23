@@ -1,7 +1,7 @@
 {
-  "name": "siddhant-process-house-ui",
+  "name": "operations-tracker-mobile",
   "version": "1.0.0",
   "private": true,
-  "description": "Offline process house operations prototype",
+  "description": "Offline mobile-first process house operations prototype",
   "scripts": { "start": "node server.js" }
 }

@@ -83,6 +83,8 @@ document.addEventListener('click',event=>{
     document.getElementById('store-lot').value=lot.id;
     document.getElementById('store-scan-status').className='callout green';
     document.getElementById('store-scan-status').innerHTML=`<strong>${lot.id}</strong> · ${lot.party}<br>Recipe loaded: <strong>Dyeing · Jet 16 · Batch D-1908</strong>`;
+    const correction=(state.qcCorrections||[]).find(item=>item.lotId===lot.id&&item.chemicalStatus==='Awaiting issue');
+    if(correction){document.getElementById('store-scan-status').innerHTML=`<strong>${lot.id}</strong> · QC correction ${correction.id}<br>Load: <strong>${correction.method}</strong> · ${correction.meters} m returning to re-dyeing`;const fields=document.querySelectorAll('#store-issue-content .detail-field strong');fields[0].textContent='QC correction → Re-dyeing';fields[1].textContent=correction.id;document.querySelector('#store-issue-content tbody').innerHTML=correction.chemicals.map(([name,qty,unit])=>`<tr><td><strong>${name}</strong><br><span class="muted">QC correction</span></td><td>${qty} ${unit}</td><td>Available</td><td><input class="input store-qty" disabled value="${qty}" aria-label="${name} actual issue"> ${unit}</td></tr>`).join('');document.getElementById('store-issue-form').dataset.correctionId=correction.id;}
     document.getElementById('store-issue-content').style.opacity='1';document.getElementById('store-issue-content').style.pointerEvents='';
     document.querySelectorAll('.store-qty, #store-note').forEach(field=>field.disabled=false);
     document.getElementById('store-submit').disabled=false;
@@ -93,9 +95,15 @@ document.addEventListener('click',event=>{
   document.getElementById('scan-lot-status').className='callout green';
   document.getElementById('scan-lot-status').innerHTML=`<strong>${lot.id}</strong> · ${lot.party}<br>Current stage: <strong>${lot.stage}</strong> · ${lot.qty} received`;
   document.querySelectorAll('#entry-form input:not(#entry-lot), #entry-form select').forEach(field=>field.disabled=false);
+  const entryType=document.querySelector('#scan-entry-type select');
+  entryType.id='entry-type';
+  entryType.options[0].value='complete';
+  entryType.options[1].value='partial';
+  entryType.options[2].value='rework';
   ['scan-entry-fields','scan-entry-type','partial-row','scan-note'].forEach(id=>{const item=document.getElementById(id);item.style.opacity='1';item.style.pointerEvents='';});
   document.getElementById('entry-submit').disabled=false;
   toast(`${lot.id} scanned · meter entry unlocked`);
 },true);
+document.addEventListener('change',event=>{if(event.target.id!=='entry-type')return;let note=document.getElementById('entry-type-note');if(!note){note=document.createElement('div');note.id='entry-type-note';document.getElementById('scan-entry-type').insertAdjacentElement('afterend',note);}if(event.target.value==='rework'){note.className='callout amber';note.innerHTML='<strong>Rework record:</strong> enter the corrective meters and reason. It is linked to the original stage and is not counted as fresh production output.';}else{note.className='callout green';note.textContent=event.target.value==='partial'?'Only verified completed meters are recorded for this partial entry.':'This entry will be recorded as normal production output.';}},true);
 document.addEventListener('click',event=>{const exit=event.target.closest('[data-worker-exit]');if(!exit)return;event.preventDefault();event.stopImmediatePropagation();state.role='owner';state.view='dashboard';state.detailTab='job';state.chemSection='store';updateProfile();render();toast('Returned to profile selection.');},true);
-document.addEventListener('submit',event=>{if(event.target.id!=='store-issue-form')return;event.preventDefault();const lot=document.getElementById('store-lot').value;if(!lot)return;toast(`Chemical issue recorded for ${lot} · Jet 16`);},true);
+document.addEventListener('submit',event=>{if(event.target.id!=='store-issue-form')return;event.preventDefault();const lot=document.getElementById('store-lot').value;if(!lot)return;const correction=(state.qcCorrections||[]).find(item=>item.id===event.target.dataset.correctionId);if(correction){correction.chemicalStatus='Issued';toast(`QC correction chemicals issued for ${lot} · ${correction.id}`);return;}toast(`Chemical issue recorded for ${lot} · Jet 16`);},true);

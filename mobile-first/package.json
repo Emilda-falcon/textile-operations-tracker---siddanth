@@ -1,0 +1,7 @@
+{
+  "name": "operations-tracker-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline mobile-first process house operations prototype",
+  "scripts": { "start": "node server.js" }
+}

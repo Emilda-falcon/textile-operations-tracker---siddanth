@@ -1,0 +1,7 @@
+{
+  "name": "siddhant-process-house-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline process house operations prototype",
+  "scripts": { "start": "node server.js" }
+}

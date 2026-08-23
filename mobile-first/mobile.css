@@ -1,0 +1,71 @@
+/* Mobile-first layer: phone navigation, touch targets and single-column operations. */
+.worker-back{border:0;background:transparent;color:var(--green);font-size:12px;font-weight:750;padding:3px 0 10px;min-height:32px}
+@media (max-width: 720px) {
+  body { font-size: 14px; padding: 66px 0 76px; }
+  .app-shell { display: block; min-height: auto; }
+  .sidebar { position: fixed; z-index: 40; inset: auto 0 0; width: 100%; height: 68px; padding: 6px 8px env(safe-area-inset-bottom); border: 0; border-top: 1px solid var(--line); background: rgba(251,252,251,.97); }
+  .sidebar .brand { display:flex; position:fixed; z-index:41; top:0; left:0; right:0; height:58px; padding:13px 66px 13px 14px; background:#fbfcfb; border-bottom:1px solid var(--line); }
+  .sidebar .brand-mark { width:30px; height:30px; margin:0 !important; }
+  .sidebar .brand > div:last-child { display:block; }
+  .sidebar .brand strong { font-size:14px; }
+  .sidebar .brand span { display:none; }
+  .sidebar-bottom { display:block; position:fixed; z-index:42; top:8px; right:8px; margin:0; }
+  .profile-trigger { width:42px; height:42px; padding:5px; background:#fff; border:1px solid var(--line); box-shadow:0 4px 12px rgba(24,34,31,.08); }
+  .profile-trigger .avatar { width:30px; height:30px; }
+  .profile-menu { position:fixed; top:58px; right:10px; left:auto; bottom:auto; width:min(250px,calc(100vw - 20px)); max-height:calc(100vh - 145px); overflow-y:auto; }
+  #nav { display: flex !important; height: 100%; align-items: stretch; justify-content: space-around; overflow-x: auto; }
+  .nav-item { min-width: 68px; margin: 0; padding: 6px 8px; justify-content: center; flex-direction: column; gap: 1px; font-size: 9px; text-align: center; }
+  .nav-item.active { box-shadow: inset 0 3px 0 var(--green); }
+  .nav-icon { width: auto; font-size: 18px; }
+  .nav-count, .lock { position: absolute; transform: translate(22px,-10px); font-size: 8px; }
+  .main { padding: 16px 14px 24px; max-width: 700px; margin: auto; }
+  .topbar { display: block; margin-bottom: 18px; }
+  .topbar:not(:has(.page-title)):has(.actions) { min-height:24px; margin:0 0 12px; }
+  .topbar:not(:has(.page-title)):has(.actions)::before { content:'Factory overview'; color:var(--green); font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; }
+  .topbar:not(:has(.page-title)):has(.actions) .actions { display:none; }
+  .page-title { font-size: 26px; }
+  .page-subtitle { font-size: 12px; }
+  .actions { display: grid; grid-template-columns: 1fr; margin-top: 14px; }
+  .actions .btn, .btn { min-height: 44px; justify-content: center; }
+  .stat-grid, .grid-2, .detail-layout, .chemical-grid, .scan-layout, .job-grid, .recipe-library-layout, .chemistry-layout { grid-template-columns: minmax(0,1fr) !important; }
+  .grid-2 > *, .detail-layout > *, .chemical-grid > *, .scan-layout > *, .job-grid > *, .recipe-library-layout > *, .chemistry-layout > * { min-width: 0; }
+  .stat-grid { gap: 9px; grid-template-columns: repeat(2,minmax(0,1fr)) !important; margin-bottom: 14px; }
+  .stat-card, .panel { border-radius: 11px; }
+  .stat-card { padding: 13px; }
+  .stat-number { font-size: 23px; }
+  .panel { padding: 14px; }
+  .panel-header { margin-bottom: 13px; }
+  .filter-row { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .filter-row .input, .filter-row .select { min-height: 44px; }
+  .kanban-board { display: flex; min-width:0; overflow-x: auto; gap: 10px; padding-bottom: 8px; scroll-snap-type: x proximity; }
+  .kanban-column { min-width: 252px; scroll-snap-align: start; }
+  .kanban-card { min-height: 62px; }
+  .lot-tabs { margin: 0 -14px 14px; padding: 0 14px; }
+  .lot-tab { padding: 12px 9px; min-height: 44px; }
+  .detail-hero { display: block; }
+  .detail-hero > :last-child { display: inline-flex; margin-top: 9px; }
+  .detail-fields, .form-row, .qc-metrics, .cost-summary { grid-template-columns: 1fr 1fr; }
+  .data-table { min-width: 620px; }
+  .table-wrap { margin: 0 -2px; border-radius: 8px; }
+  .data-table th:first-child, .data-table td:first-child { position:sticky; left:0; z-index:1; background:var(--paper); box-shadow:5px 0 8px rgba(24,34,31,.04); }
+  .data-table th:first-child { background:#fff; }
+  .sample-grid, .signoff-grid { grid-template-columns: 1fr; }
+  .recipe-calculator { align-items: stretch; }
+  .recipe-calculator .field { width: 100%; }
+  .scan-card { min-height: 250px; }
+  .scan-frame { width: 180px; height: 180px; }
+  .entry-modal { width: calc(100vw - 22px); max-height: calc(100vh - 22px); overflow-y: auto; }
+  .modal-footer { position: sticky; bottom: -1px; padding-top: 12px; background: var(--paper); }
+  .toast-stack { right: 12px; left: 12px; bottom: 82px; }
+  .toast { text-align: center; }
+  .role-worker { padding-top:0; }
+  .role-worker .sidebar { display:none; }
+  .role-worker .main { padding:18px 14px 24px; }
+  .role-worker .scan-layout { gap:12px; }
+  .role-worker .scan-card { border-radius:16px; }
+}
+
+@media (max-width: 390px) {
+  .detail-fields, .form-row, .qc-metrics, .cost-summary { grid-template-columns: 1fr; }
+  .nav-item { min-width: 60px; }
+}

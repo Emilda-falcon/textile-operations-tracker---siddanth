@@ -1,0 +1,7 @@
+{
+  "name": "operations-tracker-clean-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline clean UI process house operations prototype",
+  "scripts": { "start": "node server.js" }
+}

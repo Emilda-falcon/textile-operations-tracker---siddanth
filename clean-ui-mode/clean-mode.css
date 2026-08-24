@@ -2,6 +2,7 @@
 :root{--bg:#f7f8f7;--panel:#fff;--ink:#17211d;--muted:#6e7873;--line:#e2e7e3;--green:#176f56;--green-soft:#edf6f1;--amber:#a86616;--amber-soft:#fff5e6}
 body{background:var(--bg)}
 .sidebar,.mobile-header{background:rgba(255,255,255,.96)!important;border-color:var(--line)!important}
+.brand-mark{background:#fff url("assets/operations-tracker-logo.png") center/contain no-repeat!important;color:transparent!important;border:1px solid var(--line);overflow:hidden}
 .brand strong,.page-title{letter-spacing:-.035em}.page-title{font-size:clamp(25px,6vw,32px)}.page-subtitle{max-width:38rem}.kicker{letter-spacing:.12em;color:var(--green)}
 .panel,.stat-card,.lot-card,.sample-card{box-shadow:none!important;border:1px solid var(--line)!important;border-radius:14px!important}.panel{background:var(--panel)}
 .stat-card{min-height:auto!important;padding:15px!important}.stat-number{font-size:24px!important;letter-spacing:-.04em}.stat-head,.trend,.panel-caption{font-size:11px!important}

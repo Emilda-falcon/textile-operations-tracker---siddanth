@@ -53,7 +53,7 @@ function pipeline(){
   const board=state.pipelineMode!=='list';
   const switcher=`<div class="toolbar-toggles"><div class="view-toggle"><button class="${board?'active':''}" data-kanban-mode="board">▦ Board</button><button class="${!board?'active':''}" data-kanban-mode="list">☷ List</button></div></div>`;
   return header('Operations','Lot pipeline','Live stage occupancy. A lot may be shown in more than one active stage.',btn('＋ New lot','primary','new-lot'))+
-    `<div class="panel"><div class="panel-header pipeline-toolbar"><div><h2 class="panel-title">${board?'Stage board':'Lot list'}</h2><p class="panel-caption">${board?'Matching colour marks and a numbered badge identify the same lot across multiple stages.':'Search all lots and open a job card for detail.'}</p></div>${switcher}</div><div class="filter-row"><input class="input" id="lot-search" value="${esc(state.query||'')}" placeholder="Search lot, party, material, or stage…"><button class="btn">All active stages</button></div>${board?kanbanBoard(lots):`<div class="pipeline-list visible">${table(lots)}</div>`}</div>`;
+    `<div class="panel"><div class="panel-header pipeline-toolbar"><div><h2 class="panel-title">${board?'Stage board':'Lot list'}</h2></div>${switcher}</div><div class="filter-row"><input class="input" id="lot-search" value="${esc(state.query||'')}" placeholder="Search lot, party, material, or stage…"><button class="btn">All active stages</button></div>${board?kanbanBoard(lots):`<div class="pipeline-list visible">${table(lots)}</div>`}</div>`;
 }
 document.addEventListener('click', event => {
   const button=event.target.closest('[data-kanban-mode]');
